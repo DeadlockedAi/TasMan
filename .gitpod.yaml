@@ -1,0 +1,24 @@
+tasks:
+    - name: Setup Java 24 and Build Spring Boot
+    init: | 
+    # Install Java 24 via SDKMAN ( automated - no prompts) 
+    echo "Y" | sdk install java 24.0.0-tem
+    # Verify Java 24 is active
+    java -version
+    mvn -version
+    #Build the project
+    mvn clean install
+    command: |
+        #Run Spring Boot aplication
+        mvn spring-boot:Run
+ports: 
+    - port: 8080
+      onOpen: open-preview
+
+vscode:
+    extensions:
+        - vscjava.vscode-spring-boot
+        - vscjava.vscode-maven
+        - redhat.java
+        - Pivotal.vscode-spring-boot
+        - eamodio.gitlens
